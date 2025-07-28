@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHT11 Sensor Data</title>
+</head>
+<body>
+    <h1>DHT11 Sensor Data</h1>
+    <p>Temperature: {{ temperature }} °C</p>
+    <p>Humidity: {{ humidity }} %</p>
+    <h2>Current Time</h2>
+    <p>Time: {{ time }}</p>
+    <p>Date: {{ date }}</p>
+    <h1>Live Camera Stream</h1>
+    <img src="http://192.168.1.170:81/stream" style="width:300px; transform:rotate(0deg);"></body>
+    
+    <h1>Click the button to call a function</h1>
+    <form method="post">
+        <button type="submit">Call Function</button>
+    </form>
+    {% if message %}
+        <p><strong>Result:</strong> {{ message }}</p>
+    {% endif %}
+</html>
