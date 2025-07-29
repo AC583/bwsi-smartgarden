@@ -13,13 +13,18 @@
     <p>Time: {{ time }}</p>
     <p>Date: {{ date }}</p>
     <h1>Live Camera Stream</h1>
-    <img src="http://192.168.1.170:81/stream" style="width:300px; transform:rotate(0deg);"></body>
+    <img src="http://192.168.1.170:81/stream" width="640" height="480" alt="Live Camera Stream"/>
     
-    <h1>Click the button to call a function</h1>
+    <h1>Click the button to analyze the image</h1>
     <form method="post">
-        <button type="submit">Call Function</button>
+        <button type="submit">Analyze Image</button>
     </form>
     {% if message %}
+        <img src="/image">
+        <p>Processing</p>
         <p><strong>Result:</strong> {{ message }}</p>
     {% endif %}
+</body>
+
+
 </html>

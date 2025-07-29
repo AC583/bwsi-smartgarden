@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
+import requests
 import RPi.GPIO as GPIO
 import dht11
 from smbus2 import SMBus
@@ -6,7 +7,7 @@ import time
 import Adafruit_ILI9341 as ILI9341
 from PIL import Image, ImageDraw, ImageFont
 import spidev  # Import the spidev library for SPI communication
-from imageCapture import capture_image  # Import the capture_image function
+import imageCapture
 from classify import classify_image  # Import the classify_image function
 # Initialize Flask app
 app = Flask(__name__)
@@ -38,6 +39,7 @@ def read_rtc():
 
     return f"{hours:02}:{minutes:02}:{seconds:02}", f"{date:02}/{month:02}/{year}"
 
+
 @app.route('/')
 def index():
     # Read data from the DHT11 sensor
@@ -57,8 +59,10 @@ def index():
 @app.route('/', methods=['GET', 'POST'])
 def call_function():
     num = 1
-    capture_image(num)
+    imageCapture.capture_image(num)
     message = classify_image(f"photo_{num}.jpg")
+
+    
     return render_template('index.html', message=message)
 
 if __name__ == '__main__':
